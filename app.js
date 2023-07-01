@@ -31,10 +31,13 @@ function addItem() {
   checkBoxes.forEach((checkbox) => {
     checkbox.addEventListener("click", (e) => {
       const targetListItem = e.target.parentElement;
-      targetListItem.classList.add("completed");
+      targetListItem.classList.toggle("completed");
+      // move completed task to 'completed list'
+      const completedList = document.querySelector(".completed-list");
+      completedList.appendChild(targetListItem);
     });
   });
-  // =================================some work necessary still
+  // =================================some work necessary still: the item should return to the list when unchecked.
 
   // edit item in list
   const editBtns = document.querySelectorAll(".edit");
@@ -84,3 +87,8 @@ function hideElement() {
 }
 
 addItemBtn.addEventListener("click", addItem);
+
+
+
+
+// text must wrap when overflowing the row

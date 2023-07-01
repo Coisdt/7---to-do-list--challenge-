@@ -21,10 +21,10 @@ body {
 
 .container {
   display: grid;
-  grid-template-rows: 1fr 1fr 0.5fr 6fr;
+  grid-template-rows: 1fr 1fr 0.5fr 6fr 3fr;
   place-self: center;
   border: 4px solid var(--background-clr);
-  height: 700px;
+  height: fit-content;
   width: 700px;
   background-color: var(--background-clr);
 }
@@ -83,6 +83,7 @@ body {
   padding: 21px;
   background-color: lightgray;
   word-wrap: break-word;
+  /* display: none; */
 }
 
 .list-title {
@@ -105,11 +106,11 @@ body {
   display: grid;
   grid-template-columns: 0.5fr 6fr 0.5fr 0.5fr;
   align-items: center;
-  width: 650px;
-  /* border: 0.5px solid; */
+  max-width: 650px;
   border-bottom: 1px solid;
   padding-bottom: 5px;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
+  height: auto;
 }
 
 .checkbox {
@@ -134,4 +135,15 @@ body {
 
 .completed {
   text-decoration: line-through;
+}
+
+.completed-list {
+  background-color: lightgrey;
+  padding: 21px;
+}
+
+.completed-list-title {
+  font-size: 30px;
+  text-decoration: underline;
+  color: black;
 }
