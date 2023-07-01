@@ -131,3 +131,7 @@ body {
   display: inline-block;
   font-size: 25px;
 }
+
+.completed {
+  text-decoration: line-through;
+}

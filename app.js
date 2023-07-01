@@ -25,6 +25,17 @@ function addItem() {
   //   reset input
   inputElement.value = "";
 
+  // cross out completed tasks
+  const checkBoxes = document.querySelectorAll(".checkbox");
+
+  checkBoxes.forEach((checkbox) => {
+    checkbox.addEventListener("click", (e) => {
+      const targetListItem = e.target.parentElement;
+      targetListItem.classList.add("completed");
+    });
+  });
+  // =================================some work necessary still
+
   // edit item in list
   const editBtns = document.querySelectorAll(".edit");
   editBtns.forEach((btn) => {
@@ -58,7 +69,7 @@ function addItem() {
   });
 }
 
-// save changes notification
+// save changes notification function
 const saveChanges = document.querySelector(".saved-changes");
 function notifyChanges() {
   addItemBtn.addEventListener("click", () => {
@@ -73,5 +84,3 @@ function hideElement() {
 }
 
 addItemBtn.addEventListener("click", addItem);
-
-// cross out completed
