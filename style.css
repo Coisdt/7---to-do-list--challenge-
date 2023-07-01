@@ -21,7 +21,7 @@ body {
 
 .container {
   display: grid;
-  grid-template-rows: 1fr 1.5fr 6fr;
+  grid-template-rows: 1fr 1fr 0.5fr 6fr;
   place-self: center;
   border: 4px solid var(--background-clr);
   height: 700px;
@@ -70,10 +70,19 @@ body {
   border-radius: 15px;
 }
 
+/* =================== notification bar */
+
+.saved-changes {
+  color: rgb(170, 167, 167);
+  display: grid;
+  justify-content: center;
+}
+
 /* =================== list */
 .list-container {
   padding: 21px;
   background-color: lightgray;
+  word-wrap: break-word;
 }
 
 .list-title {
@@ -94,11 +103,13 @@ body {
 .item {
   font-size: 25px;
   display: grid;
-  grid-template-columns: 0.5fr 6fr 1fr 1fr;
+  grid-template-columns: 0.5fr 6fr 0.5fr 0.5fr;
   align-items: center;
-  width: 600px;
+  width: 650px;
   /* border: 0.5px solid; */
   border-bottom: 1px solid;
+  padding-bottom: 5px;
+  word-wrap: break-word;
 }
 
 .checkbox {
@@ -112,7 +123,8 @@ body {
 .edit {
   justify-self: end;
   border: 1px solid;
-  padding: 3px;
+  padding: 4px;
+  border-radius: 5px;
 }
 
 ::marker {
