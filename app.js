@@ -25,6 +25,8 @@ function addItem() {
   //   reset input
   inputElement.value = "";
 
+  // when enter is pressed, it activates the add btn
+
   // cross out completed tasks
   const checkBoxes = document.querySelectorAll(".checkbox");
 
@@ -34,10 +36,16 @@ function addItem() {
       targetListItem.classList.toggle("completed");
       // move completed task to 'completed list'
       const completedList = document.querySelector(".completed-list");
-      completedList.appendChild(targetListItem);
+      const completedItem = completedList.appendChild(targetListItem);
+      // move completed task back to ToDoList
+      completedItem.addEventListener("click", () => {
+        checkbox.addEventListener("click", () => {
+          toDoList.appendChild(completedItem);
+          // =================================bug - when completed item is returned to list and then clicked again, it does nothing
+        });
+      });
     });
   });
-  // =================================some work necessary still: the item should return to the list when unchecked.
 
   // edit item in list
   const editBtns = document.querySelectorAll(".edit");
@@ -65,30 +73,27 @@ function addItem() {
       const targetListItem = e.target.parentElement;
       targetListItem.remove();
       // delete notification
-      const saveChanges = document.querySelector(".saved-changes");
-      saveChanges.textContent = "Your task was successfully deleted";
+      const notification = document.querySelector(".notification");
+      notification.textContent = "Task successfully deleted.";
       hideElement();
     });
   });
 }
 
 // save changes notification function
-const saveChanges = document.querySelector(".saved-changes");
+const notification = document.querySelector(".notification");
 function notifyChanges() {
   addItemBtn.addEventListener("click", () => {
-    saveChanges.textContent = "Your changes have been saved!";
+    notification.textContent = "Changes saved!";
   });
 }
 
 function hideElement() {
   setTimeout(() => {
-    saveChanges.textContent = "";
+    notification.textContent = "";
   }, 3000);
 }
 
 addItemBtn.addEventListener("click", addItem);
 
 
-
-
-// text must wrap when overflowing the row
