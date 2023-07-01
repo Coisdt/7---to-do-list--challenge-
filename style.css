@@ -21,7 +21,7 @@ body {
 
 .container {
   display: grid;
-  grid-template-rows: 1fr 1fr 0.5fr 6fr 3fr;
+  grid-template-rows: 1fr 1fr 0.5fr auto auto; /*auto makes the div move as content comes in*/
   place-self: center;
   border: 4px solid var(--background-clr);
   height: fit-content;
@@ -137,7 +137,9 @@ body {
   text-decoration: line-through;
 }
 
-.completed-list {
+
+/* ==============completed list */
+.completed-list-container {
   background-color: lightgrey;
   padding: 21px;
   border-top: 4px solid var(--background-clr);
@@ -147,4 +149,13 @@ body {
   font-size: 30px;
   text-decoration: underline;
   color: black;
+}
+
+.completed-list{
+  display: grid;
+  padding-top: 19px;
+  padding-bottom: 19px;
+  line-height: 35px;
+  gap: 5px;
+  justify-content: center;
 }

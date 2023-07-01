@@ -88,6 +88,7 @@ function notifyChanges() {
   });
 }
 
+// remove notification message after a few seconds
 function hideElement() {
   setTimeout(() => {
     notification.textContent = "";
@@ -95,5 +96,3 @@ function hideElement() {
 }
 
 addItemBtn.addEventListener("click", addItem);
-
-
