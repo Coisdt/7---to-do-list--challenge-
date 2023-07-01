@@ -15,11 +15,9 @@ body {
 }
 
 .center {
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
+  display: grid;
+  justify-content: center;
   gap: 15px;
-  /* align-items: center; */
   height: 100vh;
 }
 
@@ -90,12 +88,13 @@ body {
   word-wrap: break-word;
   background-color: lightgrey;
   padding: 21px;
-  place-self: center;
+  /* place-self: center; */
   border: 2px solid var(--background-clr);
   height: fit-content;
   width: 700px;
   border-radius: 15px;
   display: none;
+  align-self: start;
 }
 
 .list-title {

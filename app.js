@@ -45,7 +45,7 @@ function addItem() {
   checkBoxes.forEach((checkbox) => {
     checkbox.addEventListener("click", (e) => {
       const targetListItem = e.target.parentElement;
-      targetListItem.classList.add("completed"); 
+      targetListItem.classList.add("completed");
 
       // move completed task to 'completed list'
       const completedList = document.querySelector(".completed-list-container");
@@ -58,11 +58,12 @@ function addItem() {
       if (completedItem) {
         completedListContainer.classList.add("show-list");
       }
+      
       // move completed task back to ToDoList
       completedItem.addEventListener("click", () => {
         checkbox.addEventListener("click", () => {
           toDoList.appendChild(completedItem);
-          completedItem.classList.remove('completed')
+          completedItem.classList.remove("completed");
           // =================================bug - when completed item is returned to list and then clicked again, it does nothing
         });
       });
