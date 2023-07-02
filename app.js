@@ -4,25 +4,34 @@ const listContainer = document.querySelector(".list-container");
 const toDoList = document.querySelector(".to-do-list");
 const appCenter = document.querySelector(".center");
 
-function addItem() {
+function addTask() {
   // create new element
-  const listItem = document.createElement("li");
-  listItem.setAttribute("class", "item");
+  const task = document.createElement("li");
+ task.setAttribute("class", "task-item");
   let inputValue = inputElement.value;
-  //   if input empty
+
+  //   if input is empty
   if (inputElement.value.trim() === "") {
     return;
   }
-  //   add item to list
-  listItem.innerHTML = `
-  <input class='checkbox' type="checkbox"></input>${
-    inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
-  }
-  <i class="edit fa-solid fa-pencil">
-  </i>
+  //   add tasks to list
+  task.innerHTML = `
+  <input class='checkbox' type="checkbox"></input>
+  ${inputValue.charAt(0).toUpperCase() + inputValue.slice(1)}
+  <i class='time-stamp'></i>
+  <i class="edit fa-solid fa-pencil"></i>
   <i class="delete fa-solid fa-trash"></i> 
   `;
-  const newTaskAdded = toDoList.appendChild(listItem);
+  const newTaskAdded = toDoList.appendChild(task);
+
+  // time stamp in each item
+  const timeStamp = new Date();
+  const date = timeStamp.getDate()
+  const month = timeStamp.getMonth()
+  const year = timeStamp.getFullYear()
+  const timeStampElement = document.querySelector(".time-stamp");
+  timeStampElement.textContent = `${date}/${month}/${year}`
+  console.log(date, month, year);
 
   // show list-container only when new items are added
   if (newTaskAdded) {
@@ -32,7 +41,7 @@ function addItem() {
   //   reset input
   inputElement.value = "";
 
-  // when enter is pressed, it activates the add btn
+  // ====================================when enter is pressed, it activates the add btn
 
   // show completed-list-container only when items are completed
   addItemBtn.addEventListener("click", () => {
@@ -44,21 +53,24 @@ function addItem() {
 
   checkBoxes.forEach((checkbox) => {
     checkbox.addEventListener("click", (e) => {
-      const targetListItem = e.target.parentElement;
-      targetListItem.classList.add("completed");
+      const targetTask = e.target.parentElement;
+      targetTask.classList.add("completed");
 
       // move completed task to 'completed list'
       const completedList = document.querySelector(".completed-list-container");
-      const completedItem = completedList.appendChild(targetListItem);
+      const completedItem = completedList.appendChild(targetTask);
       const completedListContainer = document.querySelector(
         ".completed-list-container"
       );
+
+      // ========================================add time stamp for each completed task
+      // console.log((completedItem.textContent = "hi peeeps"));
 
       // only show completed-list-container on task add
       if (completedItem) {
         completedListContainer.classList.add("show-list");
       }
-      
+
       // move completed task back to ToDoList
       completedItem.addEventListener("click", () => {
         checkbox.addEventListener("click", () => {
@@ -75,13 +87,13 @@ function addItem() {
   editBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const toDoInput = document.querySelector(".to-do-input");
-      const targetListItem = e.target.parentElement;
-      let targetContent = targetListItem.textContent.trim();
+      const targetTask = e.target.parentElement;
+      let targetContent = targetTask.textContent.trim();
 
       inputElement.value = targetContent;
       console.log(toDoInput);
       addItemBtn.textContent = "Save";
-      targetListItem.remove();
+      targetTask.remove();
       // save notification
       notifyChanges();
     });
@@ -93,8 +105,8 @@ function addItem() {
   const deleteBtn = document.querySelectorAll(".delete");
   deleteBtn.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      const targetListItem = e.target.parentElement;
-      targetListItem.remove();
+      const targetTask = e.target.parentElement;
+      targetTask.remove();
       // delete notification
       const notification = document.querySelector(".notification");
       notification.textContent = "Task successfully deleted.";

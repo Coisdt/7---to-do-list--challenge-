@@ -112,12 +112,13 @@ body {
   justify-content: center;
 }
 
-.item {
+.task-item {
   font-size: 25px;
   display: grid;
-  grid-template-columns: 0.5fr 6fr 0.5fr 0.5fr;
+  grid-template-columns: 0.5fr 6fr 0.7fr 0.5fr 0.5fr;
   align-items: center;
   width: 650px;
+  gap: 2px;
   border-bottom: 1px solid;
   padding-bottom: 5px;
   overflow-wrap: break-word;
@@ -146,6 +147,16 @@ body {
 
 .completed {
   text-decoration: line-through;
+}
+
+.time-stamp {
+  font-size: 14px;
+  display: grid;
+  justify-content: end;
+}
+
+.delete:hover {
+  color: red;
 }
 
 /* ==============completed list */
