@@ -4,7 +4,7 @@ const listContainer = document.querySelector(".list-container");
 const toDoList = document.querySelector(".to-do-list");
 const appCenter = document.querySelector(".center");
 
-function addTask() {
+function addTask(e) {
   // create new element
   const task = document.createElement("li");
   task.setAttribute("class", "task-item");
@@ -46,8 +46,6 @@ function addTask() {
   //   reset input
   inputElement.value = "";
 
-  // ====================================when enter is pressed, it activates the add btn
-
   // show completed-list-container only when items are completed
   appCenter.classList.add("show-list");
 
@@ -88,7 +86,7 @@ function addTask() {
     btn.addEventListener("click", (e) => {
       const toDoInput = document.querySelector(".to-do-input");
       const targetTask = e.target.parentElement;
-      let targetTaskSpan = targetTask.querySelector('.item-value');
+      let targetTaskSpan = targetTask.querySelector(".item-value");
 
       inputElement.value = targetTaskSpan.textContent;
       addItemBtn.textContent = "Save";
