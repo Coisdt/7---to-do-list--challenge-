@@ -7,7 +7,7 @@ const appCenter = document.querySelector(".center");
 function addTask() {
   // create new element
   const task = document.createElement("li");
- task.setAttribute("class", "task-item");
+  task.setAttribute("class", "task-item");
   let inputValue = inputElement.value;
 
   //   if input is empty
@@ -17,8 +17,10 @@ function addTask() {
   //   add tasks to list
   task.innerHTML = `
   <input class='checkbox' type="checkbox"></input>
-  ${inputValue.charAt(0).toUpperCase() + inputValue.slice(1)}
-  <i class='time-stamp'></i>
+  <span class='item-value'>${
+    inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
+  }</span>
+  <i class="time-stamp"></i> 
   <i class="edit fa-solid fa-pencil"></i>
   <i class="delete fa-solid fa-trash"></i> 
   `;
@@ -26,12 +28,15 @@ function addTask() {
 
   // time stamp in each item
   const timeStamp = new Date();
-  const date = timeStamp.getDate()
-  const month = timeStamp.getMonth()
-  const year = timeStamp.getFullYear()
-  const timeStampElement = document.querySelector(".time-stamp");
-  timeStampElement.textContent = `${date}/${month}/${year}`
-  console.log(date, month, year);
+  const date = timeStamp.getDate();
+  const month = timeStamp.getMonth();
+  const year = timeStamp.getFullYear();
+  const timeStampElement = document.querySelectorAll(".time-stamp");
+  const fullTimeStamp = `${date}/${month}/${year}`;
+
+  timeStampElement.forEach((elem) => {
+    elem.textContent = fullTimeStamp;
+  });
 
   // show list-container only when new items are added
   if (newTaskAdded) {
@@ -44,9 +49,7 @@ function addTask() {
   // ====================================when enter is pressed, it activates the add btn
 
   // show completed-list-container only when items are completed
-  addItemBtn.addEventListener("click", () => {
-    appCenter.classList.add("show-list");
-  });
+  appCenter.classList.add("show-list");
 
   // cross out completed tasks
   const checkBoxes = document.querySelectorAll(".checkbox");
@@ -62,9 +65,6 @@ function addTask() {
       const completedListContainer = document.querySelector(
         ".completed-list-container"
       );
-
-      // ========================================add time stamp for each completed task
-      // console.log((completedItem.textContent = "hi peeeps"));
 
       // only show completed-list-container on task add
       if (completedItem) {
@@ -88,10 +88,9 @@ function addTask() {
     btn.addEventListener("click", (e) => {
       const toDoInput = document.querySelector(".to-do-input");
       const targetTask = e.target.parentElement;
-      let targetContent = targetTask.textContent.trim();
+      let targetTaskSpan = targetTask.querySelector('.item-value');
 
-      inputElement.value = targetContent;
-      console.log(toDoInput);
+      inputElement.value = targetTaskSpan.textContent;
       addItemBtn.textContent = "Save";
       targetTask.remove();
       // save notification
@@ -130,4 +129,4 @@ function hideElement() {
   }, 3000);
 }
 
-addItemBtn.addEventListener("click", addItem);
+addItemBtn.addEventListener("click", addTask);

@@ -118,7 +118,7 @@ body {
   grid-template-columns: 0.5fr 6fr 0.7fr 0.5fr 0.5fr;
   align-items: center;
   width: 650px;
-  gap: 2px;
+  gap: 1px;
   border-bottom: 1px solid;
   padding-bottom: 5px;
   overflow-wrap: break-word;
@@ -150,9 +150,11 @@ body {
 }
 
 .time-stamp {
+  color: black;
   font-size: 14px;
   display: grid;
   justify-content: end;
+  /* height: 100%; */
 }
 
 .delete:hover {
