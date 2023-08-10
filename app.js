@@ -32,7 +32,7 @@ function addTask(e) {
   const month = timeStamp.getMonth();
   const year = timeStamp.getFullYear();
   const timeStampElement = document.querySelectorAll(".time-stamp");
-  const fullTimeStamp = `${date}/${month}/${year}`;
+  const fullTimeStamp = `Created: ${date}/${month}/${year}`;
 
   timeStampElement.forEach((elem) => {
     elem.textContent = fullTimeStamp;
